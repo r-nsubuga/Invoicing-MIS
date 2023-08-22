@@ -1,0 +1,82 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/pages/californiatemplate/template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="personView" enctype="multipart/form-data">
+                    
+            <div class="p-grid ">
+                <div class="p-col-12">
+                    <div class="card">
+                        <p:dataTable id="rolesTable" var="model"
+                                     value="#{personView.dataModels}" widgetVar="rolesTable"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                     paginator="true" lazy="true"
+                                     rows="#{personView.maximumresultsPerpage}"
+                                     emptyMessage="#{personView.dataEmptyMessage}"
+                                     paginatorPosition="bottom" paginatorAlwaysVisible="false"
+                                     rowIndexVar="row" reflow="true" styleClass="TableAlgnment">
+                            <f:facet name="header">
+                                <div class="p-d-flex p-jc-between">
+                                    <div>
+                                        <span style="font-weight: bold">Roles</span>
+                                    </div>
+                                    <div>
+                                        <p:commandButton value="Add Role" process="@this"
+                                                         styleClass="ui-button-help" immediate="true"
+                                                         actionListener="#{roleFormDialog.show}">
+                                            <f:setPropertyActionListener value="#{null}"
+                                                                         target="#{roleFormDialog.model}" />
+                                            <p:ajax event="dialogReturn" listener="#{personView.reloadFilterReset}" update="rolesTable" />
+                                        </p:commandButton>
+                                    </div>
+                                </div>
+                            </f:facet>
+                            <p:column width="30" headerText="No.">
+                                <h:outputText value="#{row + 1}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="FirstName" />
+                                </f:facet>
+                                <h:outputText value="#{model.firstName}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="LastName" />
+                                </f:facet>
+                                <h:outputText value="#{model.lastName}" />
+                            </p:column>
+                            
+                            <p:column headerText="Action" exportable="false" width="150"
+                                      style="text-align: center">
+                                <p:commandButton icon="fa fa-edit" title="Edit role"
+                                                 styleClass="ui-button-help" immediate="true"
+                                                 actionListener="#{roleFormDialog.show}">
+                                    <f:setPropertyActionListener value="#{model}"
+                                                                 target="#{roleFormDialog.model}" />
+
+                                    <p:ajax event="dialogReturn" update="rolesTable" />
+                                </p:commandButton>
+
+                                <p:commandButton icon="fa fa-trash" title="Delete role"
+                                                 styleClass="ui-button-danger" style="margin-left: 5px"
+                                                 actionListener="#{personView.deleteSelectedRole(model)}" update="personView">
+                                    <p:confirm header="Confirmation"
+                                               message="You are about to delete a role. Do you wish to continue?"
+                                               icon="ui-icon-alert" />
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                        <p:blockUI block="personView">
+                            <p:graphicImage value="/resources/images/workingicon.png" />
+                        </p:blockUI>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
