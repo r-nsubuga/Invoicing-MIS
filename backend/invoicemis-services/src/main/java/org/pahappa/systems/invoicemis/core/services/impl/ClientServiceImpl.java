@@ -2,6 +2,7 @@ package org.pahappa.systems.invoicemis.core.services.impl;
 
 import org.pahappa.systems.invoicemis.core.services.ClientService;
 import org.pahappa.systems.invoicemis.models.client.Client;
+import org.pahappa.systems.invoicemis.utils.Validate;
 import org.sers.webutils.model.exception.OperationFailedException;
 import org.sers.webutils.model.exception.ValidationFailedException;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ public class ClientServiceImpl extends GenericServiceImpl<Client> implements Cli
 
     @Override
     public Client saveInstance(Client entityInstance) throws ValidationFailedException, OperationFailedException {
-        if(entityInstance !=null){}
+        Validate.notNull(entityInstance, "Missing entity instance");
         return save(entityInstance);
     }
 

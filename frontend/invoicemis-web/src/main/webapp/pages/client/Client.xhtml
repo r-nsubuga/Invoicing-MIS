@@ -62,7 +62,7 @@
                             <div class="p-col-12">
                                 <div class="card">
                                     <p:dataTable id="clientsTable" var="model" value="#{clientView.dataModels}"
-                                                 widgetVar="usersTable"
+                                                 widgetVar="clientsTable"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                                                  paginator="true" lazy="true" rows="20"
                                                  emptyMessage="#{clientView.dataEmptyMessage}"
@@ -79,11 +79,14 @@
                                                 <div>
                                                     <div class="p-d-flex p-flex-wrap">
                                                         <div class="p-mr-2 p-mb-2">
-                                                            <p:commandButton value="Add Animal" process="@this"
+                                                            <p:commandButton value="Add Client" process="@this"
                                                                              styleClass="ui-button-help" immediate="true"
+                                                                             actionListener="#{clientDialog.show}"
                                                                              >
+                                                                <f:setPropertyActionListener value="#{null}"
+                                                                                             target="#{clientDialog.model}" />
 
-                                                                <p:ajax event="dialogReturn" listener="#{clientView.reloadFilterReset}" update="usersTable" />
+                                                                <p:ajax event="dialogReturn" listener="#{clientView.reloadFilterReset}" update="clientsTable" />
                                                             </p:commandButton>
                                                         </div>
                                                     </div>
@@ -95,17 +98,12 @@
                                         <p:column width="30" headerText="No.">
                                             <h:outputText value="#{row + 1}" />
                                         </p:column>
-                                        <p:column exportable="false">
-                                            <f:facet name="header">
-                                                <h:outputText value="Image" />
-                                            </f:facet>
 
-                                        </p:column>
                                         <p:column>
                                             <f:facet name="header">
                                                 <h:outputText value="Client Name" />
                                             </f:facet>
-                                            <h:outputText value="#{model.firstName} + #{model.lastName}" />
+                                            <h:outputText value="#{model.clientFirstName} #{model.clientLastName}" />
                                         </p:column>
 
                                         <p:column>
@@ -133,9 +131,12 @@
                                                   style="text-align: center">
                                             <p:commandButton process="@this" icon="fa fa-edit"
                                                              styleClass="ui-button-help" immediate="true" rendered="true"
+                                                             actionListener="#{clientDialog.show}"
                                                              >
+                                                <f:setPropertyActionListener value="#{model}"
+                                                                             target="#{clientDialog.model}" />
 
-                                                <p:ajax event="dialogReturn" update="usersTable" />
+                                                <p:ajax event="dialogReturn" update="clientsTable" />
                                             </p:commandButton>
 
                                             <p:commandButton icon="fa fa-trash" title="Delete"
@@ -146,7 +147,7 @@
                                                 <p:confirm header="Confirmation"
                                                            message="You are about to delete a user. Do you wish to continue?"
                                                            icon="ui-icon-alert" />
-                                                <p:ajax event="dialogReturn" update="usersTable" />
+                                                <p:ajax event="dialogReturn" update="clientsTable" />
                                             </p:commandButton>
 
                                         </p:column>

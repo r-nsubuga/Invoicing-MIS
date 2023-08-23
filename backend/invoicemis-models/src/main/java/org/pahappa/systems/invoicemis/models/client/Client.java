@@ -1,6 +1,6 @@
 package org.pahappa.systems.invoicemis.models.client;
 
-import org.pahappa.systems.invoicemis.models.constants.Gender;
+import org.sers.webutils.model.Gender;
 import org.sers.webutils.model.BaseEntity;
 
 import javax.persistence.Column;
@@ -10,17 +10,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name="clients")
 public class Client extends BaseEntity {
-    private String firstName;
+    private String clientFirstName;
 
-    private String lastName;
+    private String clientLastName;
 
     private String clientContact;
 
     private String clientEmail;
 
-    private Gender gender;
+    private Gender clientGender;
 
-    @Column(name="client_contact")
+    @Column(name="client_contact", nullable = false)
     public String getClientContact() {
         return clientContact;
     }
@@ -28,7 +28,7 @@ public class Client extends BaseEntity {
     public void setClientContact(String clientContact) {
         this.clientContact = clientContact;
     }
-    @Column(name="client_email")
+    @Column(name="client_email", nullable = false)
     public String getClientEmail() {
         return clientEmail;
     }
@@ -37,30 +37,31 @@ public class Client extends BaseEntity {
         this.clientEmail = clientEmail;
     }
 
-    @Column(name="client_first_name")
-    public String getFirstName() {
-        return firstName;
+
+    @Column(name = "client_gender", nullable = false)
+    public Gender getClientGender() {
+        return clientGender;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setClientGender(Gender clientGender) {
+        this.clientGender = clientGender;
     }
 
-    @Column(name="client_last_name")
-    public String getLastName() {
-        return lastName;
+    @Column(name="client_first_name", nullable = false)
+    public String getClientFirstName() {
+        return clientFirstName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    @Column(name = "client_gender")
-    public Gender getGender() {
-        return gender;
+    public void setClientFirstName(String clientFirstName) {
+        this.clientFirstName = clientFirstName;
     }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
+    @Column(name="client_last_name", nullable = false)
+    public String getClientLastName() {
+        return clientLastName;
     }
 
+    public void setClientLastName(String clientLastName) {
+        this.clientLastName = clientLastName;
+    }
 }

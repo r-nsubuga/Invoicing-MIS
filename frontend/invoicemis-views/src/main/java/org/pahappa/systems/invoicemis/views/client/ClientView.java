@@ -32,7 +32,7 @@ public class ClientView extends PaginatedTableView<Client, ClientView, ClientVie
     private Search search;
     private Date createdFrom, createdTo;
 
-    private List<Gender> genders= new ArrayList<>();
+    private List<Gender> genders;
 
     private Gender selectedGender;
 
