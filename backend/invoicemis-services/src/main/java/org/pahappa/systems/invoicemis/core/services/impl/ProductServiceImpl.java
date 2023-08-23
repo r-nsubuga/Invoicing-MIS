@@ -5,7 +5,11 @@ import org.pahappa.systems.invoicemis.models.product.Product;
 import org.pahappa.systems.invoicemis.utils.Validate;
 import org.sers.webutils.model.exception.OperationFailedException;
 import org.sers.webutils.model.exception.ValidationFailedException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
+@Transactional
 public class ProductServiceImpl extends GenericServiceImpl<Product> implements ProductService {
     @Override
     public Product saveInstance(Product entityInstance) throws ValidationFailedException, OperationFailedException {

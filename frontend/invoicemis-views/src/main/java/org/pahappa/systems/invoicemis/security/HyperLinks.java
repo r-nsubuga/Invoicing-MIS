@@ -17,4 +17,6 @@ public class HyperLinks {
     public static final String ANIMAL_DIALOG = "/pages/animal/AnimalDialog.xhtml";
 
     public static final String CLIENT_DIALOG = "/pages/client/ClientDialog.xhtml?faces-redirect=true";
+
+    public static final String PRODUCT_DIALOG = "/pages/product/ProductDialog.xhtml?faces-redirect=true";
 }

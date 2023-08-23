@@ -11,7 +11,6 @@ import org.sers.webutils.server.core.utils.ApplicationContextProvider;
 import javax.faces.bean.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 
 @ManagedBean(name="clientDialog")
 @SessionScoped
