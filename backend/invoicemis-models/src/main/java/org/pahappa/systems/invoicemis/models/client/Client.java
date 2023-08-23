@@ -1,5 +1,6 @@
 package org.pahappa.systems.invoicemis.models.client;
 
+import org.pahappa.systems.invoicemis.models.constants.Gender;
 import org.sers.webutils.model.BaseEntity;
 
 import javax.persistence.Column;
@@ -17,7 +18,7 @@ public class Client extends BaseEntity {
 
     private String clientEmail;
 
-    private Enum Gender;
+    private Gender gender;
 
     @Column(name="client_contact")
     public String getClientContact() {
@@ -53,13 +54,13 @@ public class Client extends BaseEntity {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    @Column(name = "client-gender")
-    public Enum getGender() {
-        return Gender;
+    @Column(name = "client_gender")
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setGender(Enum gender) {
-        Gender = gender;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
+
 }
