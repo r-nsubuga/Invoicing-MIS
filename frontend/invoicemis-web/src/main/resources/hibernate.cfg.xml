@@ -8,12 +8,6 @@
 	<session-factory>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 
-		<!-- Database Connection Settings -->
-<!--		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>-->
-<!--		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Name-Management?createDatabaseIfNotExist=true</property>-->
-<!--		<property name="hibernate.connection.username">root</property>-->
-<!--		<property name="hibernate.connection.password"/>-->
-
 		<!-- JDBC connection pool (using c3p0) -->
 		<property name="hibernate.c3p0.min_size">5</property>
 		<property name="hibernate.c3p0.max_size">20</property>
@@ -51,6 +45,8 @@
 
 		<mapping class="org.pahappa.systems.invoicemis.models.practice.Person" />
 		<mapping class="org.pahappa.systems.invoicemis.models.practice.Animal" />
+		<mapping class="org.pahappa.systems.invoicemis.models.client.Client"/>
+		<mapping class="org.pahappa.systems.invoicemis.models.product.Product"/>
 		
 	</session-factory>
 </hibernate-configuration>
