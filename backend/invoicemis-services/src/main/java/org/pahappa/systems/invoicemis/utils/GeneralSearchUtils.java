@@ -89,4 +89,23 @@ public class GeneralSearchUtils {
 		}
 		return search;
 	}
+
+	public static Search composeUsersSearchForAll(List<SearchField> searchFields, String query, Gender gender, Date createdFrom, Date createdTo) {
+		Search search = new Search();
+		search.addFilterEqual("recordStatus", RecordStatus.ACTIVE);
+		if(gender != null)
+			search.addFilterEqual("gender", gender);
+		if (createdFrom != null)
+			search.addFilterGreaterOrEqual("dateCreated", DateUtils.getMinimumDate(createdFrom));
+		if (createdTo != null)
+			search.addFilterLessOrEqual("dateCreated", DateUtils.getMaximumDate(createdTo));
+
+		if (StringUtils.isNotBlank(query) && GeneralSearchUtils.searchTermSatisfiesQueryCriteria(query)) {
+			ArrayList<Filter> filters = new ArrayList<Filter>();
+			GeneralSearchUtils.generateSearchTerms(searchFields, query, filters);
+			search.addFilterAnd(filters.toArray(new Filter[filters.size()]));
+		}
+		return search;
+	}
+
 }
