@@ -1,4 +1,4 @@
-package org.pahappa.systems.invoicemis.models.practice;
+package org.pahappa.systems.invoicemis.models.invoice;
 
 import org.pahappa.systems.invoicemis.models.constants.InvoiceStatus;
 import org.sers.webutils.model.BaseEntity;
